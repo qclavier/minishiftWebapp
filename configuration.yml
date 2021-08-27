@@ -1,0 +1,23 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+
+metadata:
+  name: build-webapp
+  labels:
+    app: build-webapp
+
+spec:
+  source:
+    type: Git
+    git:
+      uri: https://github.com/qclavier/minishiftWebapp # <lorem_ipsum> = "insérez ici lorem ipsum voulu/nécessaire"
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+    pullsecret:
+      name: "utopiosaccess"
+    output:
+      to:
+        kind: DockerImage
+        name: first:v1
